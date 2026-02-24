@@ -1,18 +1,19 @@
 const express = require("express");
 const cors = require("cors");
+const fetch = require("node-fetch");
+const path = require("path");
 
 const app = express();
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
-const API_KEY = "AIzaSyACTYHOGcLaBzOXf1Pz4pX6QuoU9ENd85w";
-const PLACE_ID = "ChIJd-3_DzSwKIQRE0vHqy1kQLk";
+const API_KEY = process.env.GOOGLE_API_KEY;
+const PLACE_ID = process.env.PLACE_ID;
 
-// Ruta de prueba
 app.get("/", (req, res) => {
   res.send("SERVIDOR FUNCIONA");
 });
 
-// Ruta reviews
 app.get("/reviews", async (req, res) => {
   try {
     const response = await fetch(
@@ -28,8 +29,13 @@ app.get("/reviews", async (req, res) => {
 
   } catch (error) {
     console.log("ERROR:", error);
-    res.json({ error: "falló el server" });
+    res.status(500).json({ error: "falló el server" });
   }
 });
 
-app.listen(3000, () => console.log("SERVIDOR NUEVO ACTIVO"));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () =>
+  console.log("Servidor activo en puerto", PORT)
+);
+
