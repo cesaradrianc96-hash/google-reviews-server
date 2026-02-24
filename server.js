@@ -25,7 +25,7 @@ app.get("/reviews", async (req, res) => {
     console.log("GOOGLE RESPONDIO:");
     console.log(data);
 
-    res.json(data.result?.reviews || []);
+    res.json(data);
 
   } catch (error) {
     console.log("ERROR:", error);
@@ -38,5 +38,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log("Servidor activo en puerto", PORT)
 );
+
 
 
