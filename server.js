@@ -29,7 +29,7 @@ app.get("/reviews", async (req, res) => {
 
   } catch (error) {
     console.log("ERROR:", error);
-    res.status(500).json({ error: "falló el server" });
+    res.status(500).json({ error: "fallo el server" });
   }
 });
 
@@ -38,4 +38,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log("Servidor activo en puerto", PORT)
 );
+
 
