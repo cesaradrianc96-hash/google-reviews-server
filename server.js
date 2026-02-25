@@ -16,9 +16,9 @@ app.get("/", (req, res) => {
 
 app.get("/reviews", async (req, res) => {
   try {
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews&key=${API_KEY}`
-    );
+   const response = await fetch(
+  `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews&language=es&key=${API_KEY}`
+);
 
  const data = await response.json();
 
@@ -41,6 +41,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log("Servidor activo en puerto", PORT)
 );
+
 
 
 
